@@ -1,10 +1,14 @@
-import { Button } from "@/components/ui/button"
+import { getQueryClient, trpc } from "@/trpc/server";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { Client } from "./client";
 
 const Page = () => {
+  const queryClient = getQueryClient();
+  void queryClient.prefetchQuery(trpc.mayur.queryOptions({ text: "Mayur" }));
   return (
-    <Button size="lg" variant="default">
-      Click me
-    </Button>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <Client/>
+    </HydrationBoundary>
   )
 }
 
