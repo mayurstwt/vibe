@@ -21,11 +21,13 @@ const Page = () => {
     }
   }))
   return (
+    <div className="bg-black">
     <div className="flex flex-col items-center justify-center h-screen max-w-md mx-auto gap-y-4">
-      <Input value={value} onChange={(e) => setValue(e.target.value)} />
+      <Input value={value} onChange={(e) => setValue(e.target.value)} className="text-white"/>
       <Button disabled={invoke.isPending} onClick={() => invoke.mutate({ value: value })}>
         Invoke Background job
       </Button>
+    </div>
     </div>
   )
 }
